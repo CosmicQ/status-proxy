@@ -1,0 +1,16 @@
+[Unit]
+Description=Load Balancer Status proxy
+ConditionPathExists=/usr/local/status
+After=network.target
+ 
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=10
+startLimitIntervalSec=60
+
+WorkingDirectory=/usr/local/status
+ExecStart=/usr/local/status/bin/status-proxy
+
+[Install]
+WantedBy=multi-user.target
